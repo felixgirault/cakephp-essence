@@ -1,0 +1,3 @@
+[submodule "Vendor/Essence"]
+	path = Vendor/Essence
+	url = https://github.com/felixgirault/essence.git
