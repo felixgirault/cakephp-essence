@@ -14,17 +14,6 @@ require_once dirname( __FILE__ )
 
 
 /**
- *
- */
-
-App::uses( 'CakeHttp', 'Essence.Lib' );
-App::uses( 'HttpSocket', 'Network/Http' );
-
-fg\Essence\Registry::register( 'http', new CakeHttp( new HttpSocket( )));
-
-
-
-/**
  *	Cache configuration.
  */
 
@@ -32,8 +21,21 @@ Cache::config(
 	'essence',
 	array(
 		'engine' => 'File',
-		'duration'=> 3600,
 		'prefix' => 'essence_',
+		'duration'=> 3600,
 		'serialize' => true
 	)
 );
+
+
+
+/**
+ *
+ */
+
+App::uses( 'CakeCache', 'Essence.Lib' );
+App::uses( 'CakeHttp', 'Essence.Lib' );
+App::uses( 'HttpSocket', 'Network/Http' );
+
+fg\Essence\Registry::register( 'cache', new CakeCache( 'essence' ));
+fg\Essence\Registry::register( 'http', new CakeHttp( new HttpSocket( )));

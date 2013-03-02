@@ -21,9 +21,9 @@ class CakeHttp implements fg\Essence\Http {
 
 
 	/**
+	 *	Sets the socket to use.
 	 *
-	 *
-	 *	@param HttpSocket $Socket
+	 *	@param HttpSocket $Socket Socket.
 	 */
 
 	public function __construct( HttpSocket $Socket ) {
