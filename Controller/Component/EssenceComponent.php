@@ -1,9 +1,5 @@
 <?php
 
-use fg\Essence\Essence;
-
-
-
 /**
  *
  */
@@ -32,7 +28,7 @@ class EssenceComponent extends Component {
 
 	public function initialize( Controller $Controller ) {
 
-		$this->_Essence = new Essence( $this->providers );
+		$this->_Essence = new fg\Essence\Essence( $this->providers );
 	}
 
 

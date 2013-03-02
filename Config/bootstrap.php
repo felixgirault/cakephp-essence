@@ -14,6 +14,17 @@ require_once dirname( __FILE__ )
 
 
 /**
+ *
+ */
+
+App::uses( 'CakeHttp', 'Essence.Lib' );
+App::uses( 'HttpSocket', 'Network/Http' );
+
+fg\Essence\Registry::register( 'http', new CakeHttp( new HttpSocket( )));
+
+
+
+/**
  *	Cache configuration.
  */
 
