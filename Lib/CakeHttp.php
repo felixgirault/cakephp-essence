@@ -46,8 +46,7 @@ class CakeHttp implements fg\Essence\Http {
 		$Response = $this->_Socket->get( $url );
 
 		if ( !$Response->isOk( )) {
-			// let's assume the file doesn't exists
-			throw new Exception( $Response->code, $url );
+			throw new fg\Essence\Http\Exception( $Response->code, $url );
 		}
 
 		return $Response->body( );

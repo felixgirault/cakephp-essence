@@ -1,6 +1,6 @@
 <?php
 
-App::uses( 'HttpSocket', 'Network/Http' );
+App::uses( 'Cache', 'Cache' );
 
 
 
