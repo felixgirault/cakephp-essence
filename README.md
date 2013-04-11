@@ -7,6 +7,12 @@ Installation
 ------------
 
 Just clone this repo into the Plugin/Essence directory of your application.
+Then run these commands to retrieve the essence library:
+
+```
+git submodule init
+git submodule update
+```
 
 Configuration
 -------------
