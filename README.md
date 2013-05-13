@@ -1,12 +1,12 @@
 Essence for CakePHP
 ===================
 
-A plugin to use the [essence](https://github.com/felixgirault/essence "Essence on github") library within controllers.
+A plugin to use the [essence library](https://github.com/felixgirault/essence "Essence on github") within controllers.
 
 Installation
 ------------
 
-Just clone this repo into the Plugin/Essence directory of your application.
+Just clone this repo into the Plugin/Essence directory of your application, or install the plugin via composer.
 
 Configuration
 -------------
