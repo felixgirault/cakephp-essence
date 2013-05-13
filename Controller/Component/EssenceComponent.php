@@ -1,13 +1,15 @@
 <?php
 
 /**
- *	A simple wrapper to configure and use Essence.
+ *	A simple proxy to configure and use Essence.
  */
 
 class EssenceComponent extends Component {
 
 	/**
+	 *	An array of providers to be used by Essence.
 	 *
+	 *	@var
 	 */
 
 	public $providers = array( );
@@ -15,7 +17,9 @@ class EssenceComponent extends Component {
 
 
 	/**
+	 *	The Essence instance.
 	 *
+	 *	@var fg\Essence\Essence
 	 */
 
 	protected $_Essence = null;
@@ -23,7 +27,9 @@ class EssenceComponent extends Component {
 
 
 	/**
+	 *	Initializes this component.
 	 *
+	 *	@param Controller $Controller Controller using this component.
 	 */
 
 	public function initialize( Controller $Controller ) {
@@ -34,13 +40,19 @@ class EssenceComponent extends Component {
 
 
 	/**
+	 *	A proxy to Essence methods.
 	 *
+	 *	@param string $name Name of the method to call.
+	 *	@param array $arguments Arguments to pass to the method.
+	 *	@return mixed The method return value.
 	 */
 
 	public function __call( $name, $arguments ) {
 
-		if ( method_exists( $this->_Essence, $name )) {
-			return call_user_method_array( $name, $this->_Essence, $arguments );
+		if ( !method_exists( $this->_Essence, $name )) {
+			throw new BadMethodCallException( 'This method doesn\'t exists.' );
 		}
+
+		return call_user_method_array( $name, $this->_Essence, $arguments );
 	}
 }
