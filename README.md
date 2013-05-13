@@ -6,7 +6,15 @@ A plugin to use the [essence library](https://github.com/felixgirault/essence "E
 Installation
 ------------
 
-Just clone this repo into the Plugin/Essence directory of your application, or install the plugin via composer.
+Just clone this repo into the Plugin/Essence directory of your application.
+Then run these commands to retrieve the essence library:
+
+```
+git submodule init
+git submodule update
+```
+
+You can also install the plugin with composer.
 
 Configuration
 -------------
