@@ -18,8 +18,12 @@
 	"licence": "MIT",
 	"homepage": "http://github.com/felixgirault/cakephp-essence",
 	"require": {
+		"fg/essence": "dev-master",
 		"composer/installers": "~1.0",
 		"php": ">=5.3.0"
+	},
+	"config": {
+		"vendor-dir": "Vendor"
 	},
 	"extra": {
 		"installer-name": "Essence"

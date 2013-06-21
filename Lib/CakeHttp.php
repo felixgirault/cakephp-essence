@@ -1,5 +1,7 @@
 <?php
 
+use fg\Essence\Http\Exception;
+
 App::uses( 'HttpSocket', 'Network/Http' );
 
 
@@ -46,7 +48,7 @@ class CakeHttp implements fg\Essence\Http {
 		$Response = $this->_Socket->get( $url );
 
 		if ( !$Response->isOk( )) {
-			throw new fg\Essence\Http\Exception( $Response->code, $url );
+			throw new Exception( $Response->code, $url );
 		}
 
 		return $Response->body( );

@@ -7,7 +7,8 @@
 require_once dirname( __FILE__ )
 	. DS . '..'
 	. DS . 'Vendor'
-	. DS . 'Essence'
+	. DS . 'fg'
+	. DS . 'essence'
 	. DS . 'lib'
 	. DS . 'bootstrap.php';
 
