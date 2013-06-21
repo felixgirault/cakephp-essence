@@ -11,6 +11,8 @@ require_once dirname( __FILE__ )
 	. DS . 'lib'
 	. DS . 'bootstrap.php';
 
+use fg\Essence\Utility\Registry;
+
 
 
 /**
@@ -37,5 +39,5 @@ App::uses( 'CakeCache', 'Essence.Lib' );
 App::uses( 'CakeHttp', 'Essence.Lib' );
 App::uses( 'HttpSocket', 'Network/Http' );
 
-fg\Essence\Registry::register( 'cache', new CakeCache( 'essence' ));
-fg\Essence\Registry::register( 'http', new CakeHttp( new HttpSocket( )));
+Registry::register( 'cache', new CakeCache( 'essence' ));
+Registry::register( 'http', new CakeHttp( new HttpSocket( )));

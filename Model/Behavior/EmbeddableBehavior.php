@@ -1,5 +1,9 @@
 <?php
 
+use fg\Essence\Essence;
+
+
+
 /**
  *	Allows a model to fetch data from remote providers.
  *
@@ -55,7 +59,7 @@ class EmbeddableBehavior extends ModelBehavior {
 			( array )$settings
 		);
 
-		$this->_Essence = new fg\Essence\Essence(
+		$this->_Essence = new Essence(
 			$this->settings[ $alias ]['providers']
 		);
 	}
