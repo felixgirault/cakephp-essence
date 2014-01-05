@@ -60,7 +60,7 @@ class EmbeddableBehavior extends ModelBehavior {
 		static $Essence = null;
 
 		if ( $Essence === null ) {
-			$Essence = new Essence( Configure::read( 'Essence.configuration' ));
+			$Essence = Essence::instance( Configure::read( 'Essence.configuration' ));
 		}
 
 		return $Essence;
