@@ -1,6 +1,6 @@
 <?php
 
-use fg\Essence\Essence;
+use Essence\Essence;
 
 
 
@@ -9,39 +9,6 @@ use fg\Essence\Essence;
  */
 
 class EssenceComponent extends Component {
-
-	/**
-	 *	An array of providers to be used by Essence.
-	 *
-	 *	@var
-	 */
-
-	public $providers = array( );
-
-
-
-	/**
-	 *	The Essence instance.
-	 *
-	 *	@var fg\Essence\Essence
-	 */
-
-	protected $_Essence = null;
-
-
-
-	/**
-	 *	Initializes this component.
-	 *
-	 *	@param Controller $Controller Controller using this component.
-	 */
-
-	public function initialize( Controller $Controller ) {
-
-		$this->_Essence = new Essence( $this->providers );
-	}
-
-
 
 	/**
 	 *	A proxy to Essence methods.
@@ -53,10 +20,16 @@ class EssenceComponent extends Component {
 
 	public function __call( $name, $arguments ) {
 
-		if ( !method_exists( $this->_Essence, $name )) {
+		if ( !method_exists( 'Essence', $name )) {
 			throw new BadMethodCallException( 'This method doesn\'t exists.' );
 		}
 
-		return call_user_method_array( $name, $this->_Essence, $arguments );
+		static $Essence = null;
+
+		if ( $Essence === null ) {
+			$Essence = new Essence( Configure::read( 'Essence.configuration' ));
+		}
+
+		return call_user_func_array( array( $Essence, $name ), $arguments );
 	}
 }

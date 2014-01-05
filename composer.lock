@@ -3,20 +3,20 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "7c7ca90d92dce34a0dd818892be81472",
+    "hash": "4cc11a584fc6ac97f9425e78d376632f",
     "packages": [
         {
             "name": "composer/installers",
-            "version": "v1.0.4",
+            "version": "v1.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "v1.0.4"
+                "reference": "c87cfc35882eb50df3eef1734bfa52fbcd6c782c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/v1.0.4",
-                "reference": "v1.0.4",
+                "url": "https://api.github.com/repos/composer/installers/zipball/c87cfc35882eb50df3eef1734bfa52fbcd6c782c",
+                "reference": "c87cfc35882eb50df3eef1734bfa52fbcd6c782c",
                 "shasum": ""
             },
             "replace": {
@@ -46,19 +46,22 @@
                 {
                     "name": "Kyle Robinson Young",
                     "email": "kyle@dontkry.com",
-                    "homepage": "https://github.com/shama",
+                    "homepage": "http://dontkry.com",
                     "role": "Developer"
                 }
             ],
             "description": "A multi-framework Composer library installer",
             "homepage": "http://composer.github.com/installers/",
             "keywords": [
+                "TYPO3 CMS",
                 "TYPO3 Flow",
                 "TYPO3 Neos",
                 "agl",
                 "cakephp",
                 "codeigniter",
+                "concrete5",
                 "drupal",
+                "elgg",
                 "fuelphp",
                 "installer",
                 "joomla",
@@ -75,7 +78,7 @@
                 "wordpress",
                 "zend"
             ],
-            "time": "2013-06-20 02:36:19"
+            "time": "2013-12-24 18:04:46"
         },
         {
             "name": "fg/essence",
@@ -83,25 +86,28 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/felixgirault/essence.git",
-                "reference": "4d36bcdeae2e07a21aa4dcdafa8541538ccabe4a"
+                "reference": "0657cb6ff6d85be9a4684f47302941ee723a46db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/felixgirault/essence/zipball/4d36bcdeae2e07a21aa4dcdafa8541538ccabe4a",
-                "reference": "4d36bcdeae2e07a21aa4dcdafa8541538ccabe4a",
+                "url": "https://api.github.com/repos/felixgirault/essence/zipball/0657cb6ff6d85be9a4684f47302941ee723a46db",
+                "reference": "0657cb6ff6d85be9a4684f47302941ee723a46db",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
-                "php": ">=5.3.0"
+                "php": ">=5.4.0"
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "fg": "lib/"
-                }
+                "files": [
+                    "lib/bootstrap.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
             "authors": [
                 {
                     "name": "Félix Girault",
@@ -118,7 +124,46 @@
                 "oembed",
                 "opengraph"
             ],
-            "time": "2013-06-21 12:28:07"
+            "time": "2013-12-30 16:26:39"
+        },
+        {
+            "name": "fg/essence-interfaces",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/felixgirault/essence-interfaces.git",
+                "reference": "69bcee7483fd017ce2237b3d1fb7024dcfb4d43a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/felixgirault/essence-interfaces/zipball/69bcee7483fd017ce2237b3d1fb7024dcfb4d43a",
+                "reference": "69bcee7483fd017ce2237b3d1fb7024dcfb4d43a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Essence": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Félix Girault",
+                    "email": "felix.girault@gmail.com",
+                    "homepage": "http://www.felix-girault.fr",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Provides interfaces to use external libraries with Essence.",
+            "homepage": "http://github.com/felixgirault/essence-interfaces",
+            "keywords": [
+                "essence"
+            ],
+            "time": "2013-08-04 18:11:22"
         }
     ],
     "packages-dev": [
@@ -129,7 +174,8 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "fg/essence": 20
+        "fg/essence": 20,
+        "fg/essence-interfaces": 20
     },
     "platform": {
         "php": ">=5.3.0"

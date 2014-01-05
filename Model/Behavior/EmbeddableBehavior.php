@@ -1,6 +1,6 @@
 <?php
 
-use fg\Essence\Essence;
+use Essence\Essence;
 
 
 
@@ -15,22 +15,10 @@ use fg\Essence\Essence;
 class EmbeddableBehavior extends ModelBehavior {
 
 	/**
-	 *	The Essence instance.
-	 *
-	 *	@var fg\Essence\Essence
-	 */
-
-	protected $_Essence = null;
-
-
-
-	/**
 	 *	Setup this behavior with the given configuration settings.
 	 *
 	 *	### Settings
 	 *
-	 *	- 'providers' - array - An array of providers to be used by Essence.
-	 *		Defaults to an empty array, thus loading all available providers.
 	 *	- 'urlField' - string - The name of the field which holds the URL of
 	 *		the ressource to embed. Defaults to 'url'.
 	 *	- 'mapping' - array|string -
@@ -47,7 +35,6 @@ class EmbeddableBehavior extends ModelBehavior {
 
 		if ( !isset( $this->settings[ $alias ])) {
 			$this->settings[ $alias ] = array(
-				'providers' => array( ),
 				'urlField' => 'url',
 				'mapping' => 'auto',
 				'strict' => true
@@ -58,10 +45,25 @@ class EmbeddableBehavior extends ModelBehavior {
 			$this->settings[ $alias ],
 			( array )$settings
 		);
+	}
 
-		$this->_Essence = new Essence(
-			$this->settings[ $alias ]['providers']
-		);
+
+
+	/**
+	 *	Returns an Essence instance.
+	 *
+	 *	@return Essence\Essence
+	 */
+
+	protected function _essence( ) {
+
+		static $Essence = null;
+
+		if ( $Essence === null ) {
+			$Essence = new Essence( Configure::read( 'Essence.configuration' ));
+		}
+
+		return $Essence;
 	}
 
 
@@ -78,7 +80,7 @@ class EmbeddableBehavior extends ModelBehavior {
 	public function embeddable( Model $Model, $check ) {
 
 		$url = array_shift( $check );
-		$Media = $this->_Essence->embed( $url );
+		$Media = $this->_essence( )->embed( $url );
 
 		return ( $Media !== null );
 	}
@@ -91,14 +93,14 @@ class EmbeddableBehavior extends ModelBehavior {
 	 *	@param Model $Model Model using this behavior.
 	 */
 
-	public function beforeSave( Model $Model ) {
+	public function beforeSave( Model $Model, $options = array( )) {
 
 		$alias = $Model->alias;
 		extract( $this->settings[ $alias ]);
 
 		if ( !empty( $Model->data[ $alias ][ $urlField ])) {
 			$url = $Model->data[ $alias ][ $urlField ];
-			$Media = $this->_Essence->embed( $url );
+			$Media = $this->_essence( )->embed( $url );
 
 			if ( $Media ) {
 				if ( !is_array( $mapping )) {
@@ -106,7 +108,7 @@ class EmbeddableBehavior extends ModelBehavior {
 				}
 
 				foreach ( $mapping as $property => $field ) {
-					$value = $Media->property( $property );
+					$value = $Media->get( $property );
 
 					if ( $value ) {
 						$Model->data[ $alias ][ $field ] = $value;

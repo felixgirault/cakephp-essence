@@ -4,15 +4,13 @@
  *	Essence bootstrapping.
  */
 
-require_once dirname( __FILE__ )
-	. DS . '..'
-	. DS . 'Vendor'
-	. DS . 'fg'
-	. DS . 'essence'
-	. DS . 'lib'
-	. DS . 'bootstrap.php';
+require_once '../Vendor/autoload.php';
 
-use fg\Essence\Utility\Registry;
+use Essence\Di\Container;
+use Essence\Cache\Engine\Cake as CakeCache;
+use Essence\Http\Client\Cake as CakeHttpClient;
+
+App::uses( 'HttpSocket', 'Network/Http' );
 
 
 
@@ -36,9 +34,11 @@ Cache::config(
  *
  */
 
-App::uses( 'CakeCache', 'Essence.Lib' );
-App::uses( 'CakeHttp', 'Essence.Lib' );
-App::uses( 'HttpSocket', 'Network/Http' );
-
-Registry::register( 'cache', new CakeCache( 'essence' ));
-Registry::register( 'http', new CakeHttp( new HttpSocket( )));
+Configure::write( 'Essence.configuration', array(
+	'Cache' => Container::unique( function( ) {
+		return new CakeCache( 'essence' );
+	}),
+	'Http' => Container::unique( function( ) {
+		return new CakeHttpClient( new HttpSocket( ));
+	})
+));
