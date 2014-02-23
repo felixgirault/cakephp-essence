@@ -4,8 +4,6 @@
  *	Essence bootstrapping.
  */
 
-require_once dirname( dirname( __FILE__ )) . DS . 'Vendor' . DS . 'autoload.php';
-
 use Essence\Di\Container;
 use Essence\Cache\Engine\Cake as CakeCache;
 use Essence\Http\Client\Cake as CakeHttpClient;
