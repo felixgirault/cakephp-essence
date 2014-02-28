@@ -29,16 +29,16 @@ class EmbeddableBehavior extends ModelBehavior {
 	 *	@param array $config Configuration settings.
 	 */
 
-	public function setup( Model $Model, $settings = array( )) {
+	public function setup( Model $Model, $settings = [ ]) {
 
 		$alias = $Model->alias;
 
 		if ( !isset( $this->settings[ $alias ])) {
-			$this->settings[ $alias ] = array(
+			$this->settings[ $alias ] = [
 				'urlField' => 'url',
 				'mapping' => 'auto',
 				'strict' => true
-			);
+			];
 		}
 
 		$this->settings[ $alias ] = array_merge(
@@ -93,7 +93,7 @@ class EmbeddableBehavior extends ModelBehavior {
 	 *	@param Model $Model Model using this behavior.
 	 */
 
-	public function beforeSave( Model $Model, $options = array( )) {
+	public function beforeSave( Model $Model, $options = [ ]) {
 
 		$alias = $Model->alias;
 		extract( $this->settings[ $alias ]);
@@ -136,7 +136,7 @@ class EmbeddableBehavior extends ModelBehavior {
 	protected function _mappingFromSchema( Model $Model ) {
 
 		$schema = $Model->schema( );
-		$mapping = array( );
+		$mapping = [ ];
 
 		if ( is_array( $schema )) {
 			$fields = array_keys( $schema );

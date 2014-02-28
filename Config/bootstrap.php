@@ -16,15 +16,12 @@ App::uses( 'HttpSocket', 'Network/Http' );
  *	Cache configuration.
  */
 
-Cache::config(
-	'essence',
-	array(
-		'engine' => 'File',
-		'prefix' => 'essence_',
-		'duration'=> 3600,
-		'serialize' => true
-	)
-);
+Cache::config( 'essence', [
+	'engine' => 'File',
+	'prefix' => 'essence_',
+	'duration'=> 3600,
+	'serialize' => true
+]);
 
 
 
@@ -32,11 +29,11 @@ Cache::config(
  *
  */
 
-Configure::write( 'Essence.configuration', array(
+Configure::write( 'Essence.configuration', [
 	'Cache' => Container::unique( function( ) {
 		return new CakeCache( 'essence' );
 	}),
 	'Http' => Container::unique( function( ) {
 		return new CakeHttpClient( new HttpSocket( ));
 	})
-));
+]);

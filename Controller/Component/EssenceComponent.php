@@ -30,6 +30,6 @@ class EssenceComponent extends Component {
 			$Essence = Essence::instance( Configure::read( 'Essence.configuration' ));
 		}
 
-		return call_user_func_array( array( $Essence, $name ), $arguments );
+		return call_user_func_array([ $Essence, $name ], $arguments );
 	}
 }
