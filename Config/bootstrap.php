@@ -7,6 +7,7 @@
 use Essence\Di\Container;
 use Essence\Cache\Engine\Cake as CacheInterface;
 use Essence\Http\Client\Cake as HttpInterface;
+use Essence\Log\Logger\Cake as LogInterface;
 
 App::uses( 'HttpSocket', 'Network/Http' );
 
@@ -35,5 +36,8 @@ Configure::write( 'Essence.configuration', [
 	}),
 	'Http' => Container::unique( function( ) {
 		return new HttpInterface( new HttpSocket( ));
+	}),
+	'Log' => Container::unique( function( ) {
+		return new LogInterface( 'essence' );
 	})
 ]);
