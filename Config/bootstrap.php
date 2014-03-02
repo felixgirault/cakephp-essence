@@ -26,7 +26,7 @@ Cache::config( 'essence', [
 
 
 /**
- *
+ *	Dependency injection configuration.
  */
 
 Configure::write( 'Essence.configuration', [
