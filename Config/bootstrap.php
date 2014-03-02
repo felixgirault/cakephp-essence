@@ -5,8 +5,8 @@
  */
 
 use Essence\Di\Container;
-use Essence\Cache\Engine\Cake as CakeCache;
-use Essence\Http\Client\Cake as CakeHttpClient;
+use Essence\Cache\Engine\Cake as CacheInterface;
+use Essence\Http\Client\Cake as HttpInterface;
 
 App::uses( 'HttpSocket', 'Network/Http' );
 
@@ -31,9 +31,9 @@ Cache::config( 'essence', [
 
 Configure::write( 'Essence.configuration', [
 	'Cache' => Container::unique( function( ) {
-		return new CakeCache( 'essence' );
+		return new CacheInterface( 'essence' );
 	}),
 	'Http' => Container::unique( function( ) {
-		return new CakeHttpClient( new HttpSocket( ));
+		return new HttpInterface( new HttpSocket( ));
 	})
 ]);
