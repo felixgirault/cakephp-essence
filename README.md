@@ -6,54 +6,70 @@ A plugin to use the [essence library](https://github.com/felixgirault/essence "E
 Installation
 ------------
 
-Just clone this repo into the Plugin/Essence directory of your application.
-Then run these commands to retrieve the essence library:
+Just use composer from the app folder of your CakePHP installation:
 
 ```
-git submodule init
-git submodule update
+{
+	"minimum-stability": "dev",
+	"require": {
+		"fg/cakephp-essence": "dev-master"
+	},
+	"config": {
+		"vendor-dir": "Vendor"
+	}
+}
+
 ```
 
-You can also install the plugin with composer.
+The plugin will be installed into `Plugins/`, thanks to composer's CakePHP installer, and the Essence library will be installed into `Vendor/`.
 
-Configuration
--------------
+You should then load the plugin in `Config/bootstrap.php`:
 
-Attach the Essence component to your controller:
+```
+CakePlugin::load([
+	'Essence' => [
+		'bootstrap' => true
+	]
+]);
+```
+
+Component
+---------
 
 ```php
 <?php
 
 class MyController extends AppController {
 
-	public $components = array(
-		'Essence.Essence' => array(
-			'providers' => array(
-				'OEmbed/Dailymotion',
-				'OEmbed/Vimeo',
-				'OEmbed/Youtube',
-				'OpenGraph/Ted'
-			)
-		)
-	);
+	public $components = [ 'Essence.Essence' ];
+	
+	
+	
+	/**
+	 *	All methods of the Essence class are available through the Essence component.
+	 *	
+	 *	@see https://github.com/felixgirault/essence/blob/master/lib/fg/Essence/Essence.php
+	 */
+	 
+	public function embed( $url ) {
 
-	// ...
+		$this->set( 'media', $this->Essence->embed( $url ));
+	}
 }
 
 ?>
 ```
 
-Usage
------
-
-All methods of [the Essence class](https://github.com/felixgirault/essence/blob/master/lib/fg/Essence/Essence.php "Essence class source") are available through the Essence component:
+Behavior
+--------
 
 ```php
 <?php
 
-public function embed( $url ) {
+class MyModel extends AppModel {
 
-	$this->set( 'media', $this->Essence->embed( $url ));
+	public $actsAs = [ 'Essence.Embeddable' ];
+	
 }
 
 ?>
