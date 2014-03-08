@@ -8,7 +8,7 @@ Installation
 
 Just use composer from the app folder of your CakePHP installation:
 
-```
+```json
 {
 	"minimum-stability": "dev",
 	"require": {
@@ -25,7 +25,7 @@ The plugin will be installed into `Plugins/`, thanks to composer's CakePHP insta
 
 You should then load the plugin in `Config/bootstrap.php`:
 
-```
+```php
 CakePlugin::load([
 	'Essence' => [
 		'bootstrap' => true
@@ -37,8 +37,6 @@ Component
 ---------
 
 ```php
-<?php
-
 class MyController extends AppController {
 
 	public $components = [ 'Essence.Essence' ];
@@ -56,21 +54,15 @@ class MyController extends AppController {
 		$this->set( 'media', $this->Essence->embed( $url ));
 	}
 }
-
-?>
 ```
 
 Behavior
 --------
 
 ```php
-<?php
-
 class MyModel extends AppModel {
 
 	public $actsAs = [ 'Essence.Embeddable' ];
 	
 }
-
-?>
 ```
